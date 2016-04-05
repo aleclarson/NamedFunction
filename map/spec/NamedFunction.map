@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "NamedFunction.js",
+  "sourceRoot": "../../spec",
+  "sources": [
+    "NamedFunction.coffee"
+  ],
+  "names": [],
+  "mappings": "AACA,QAAA,CAAS,eAAT,EAA0B,SAAA;SAExB,EAAA,CAAG,8BAAH,EAAmC,SAAA;AAEjC,QAAA;IAAA,GAAA,GAAM,aAAA,CAAc,KAAd,EAAqB,SAAA;aAAG;IAAH,CAArB;IAEN,MAAA,CAAO,GAAG,CAAC,IAAX,CACE,CAAC,IADH,CACQ,KADR;WAGA,MAAA,CAAO,GAAA,CAAA,CAAP,CACE,CAAC,IADH,CACQ,CADR;EAPiC,CAAnC;AAFwB,CAA1B"
+}

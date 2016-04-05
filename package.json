@@ -1,0 +1,16 @@
+{
+  "name": "NamedFunction",
+  "description": "Rename any function.",
+  "version": "1.0.0",
+  "main": "js/src/NamedFunction",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aleclarson/NamedFunction.git"
+  },
+  "lotus": {
+    "plugins": [
+      "lotus-coffee",
+      "lotus-runner"
+    ]
+  }
+}
