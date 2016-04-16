@@ -1,5 +1,5 @@
 
-# NamedFunction v1.0.3 [![locked](http://badges.github.io/stability-badges/dist/locked.svg)](http://github.com/badges/stability-badges)
+# NamedFunction v2.0.0 [![stable](http://badges.github.io/stability-badges/dist/stable.svg)](http://github.com/badges/stability-badges)
 
 Rename any function.
 
@@ -12,3 +12,5 @@ Foo.name # => "Foo"
 
 Foo()    # => 1
 ```
+
+**Check the tests for more details!**
