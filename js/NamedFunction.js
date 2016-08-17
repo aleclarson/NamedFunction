@@ -1,4 +1,4 @@
-var NamedFunction, createImpl, isConfigurable;
+var NamedFunction, createImpl;
 
 require("isDev");
 
@@ -9,44 +9,32 @@ Object.defineProperty(Function.prototype, "getName", {
   }
 });
 
-createImpl = function(isConfigurable, isDev) {
+createImpl = function(isDev) {
   var NamedFunction, renameFunction;
   NamedFunction = function NamedFunction(name, fn) { return renameFunction(fn, name) };
-  if (!isDev) {
+  if (isDev) {
+    renameFunction = function(orig, name) {
+      var fn;
+      fn = Function("orig", "return function " + name + "() { return orig.apply(this, arguments) }")(orig);
+      fn.__orig = orig;
+      fn.toString = NamedFunction.toString;
+      return fn;
+    };
+    NamedFunction.toString = function() {
+      return Function.prototype.toString.call(this.__orig).replace(/^function([^\(\r]+)/, "function " + this.name);
+    };
+  } else {
     renameFunction = function(fn, name) {
       fn.getName = function() {
         return name;
       };
       return fn;
     };
-  } else if (isConfigurable) {
-    renameFunction = function(fn, name) {
-      Object.defineProperty(fn, "name", {
-        value: name
-      });
-      fn.toString = NamedFunction.toString;
-      return fn;
-    };
-    NamedFunction.toString = function() {
-      return Function.prototype.toString.call(this).replace(/^function([^\(\r]+)/, "function " + this.name);
-    };
-  } else {
-    renameFunction = function(orig, name) {
-      var fn;
-      fn = (Function("orig", "return function " + name + "() { return orig.apply(this, arguments) }"))(orig);
-      fn.toString = function() {
-        return Function.prototype.toString.call(orig).replace(/^function([^\(\r]+)/, "function " + name);
-      };
-      return fn;
-    };
   }
+  NamedFunction.createImpl = createImpl;
   return NamedFunction;
 };
 
-isConfigurable = Object.getOwnPropertyDescriptor(Function, "name").configurable;
-
-module.exports = NamedFunction = createImpl(isConfigurable, isDev);
-
-NamedFunction.createImpl = createImpl;
+module.exports = NamedFunction = createImpl(isDev);
 
 //# sourceMappingURL=map/NamedFunction.map

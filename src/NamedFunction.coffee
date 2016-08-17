@@ -7,40 +7,30 @@ Object.defineProperty Function.prototype, "getName",
   writable: yes
   value: -> @name
 
-createImpl = (isConfigurable, isDev) ->
+createImpl = (isDev) ->
 
   NamedFunction = `function NamedFunction(name, fn) { return renameFunction(fn, name) }`
 
-  unless isDev
+  if isDev
 
-    renameFunction = (fn, name) ->
-      fn.getName = -> name
-      return fn
-
-  else if isConfigurable
-
-    renameFunction = (fn, name) ->
-      Object.defineProperty fn, "name", { value: name }
+    renameFunction = (orig, name) ->
+      fn = Function("orig", "return function " + name + "() { return orig.apply(this, arguments) }")(orig)
+      fn.__orig = orig
       fn.toString = NamedFunction.toString
       return fn
 
     NamedFunction.toString = ->
       Function::toString
-        .call this
+        .call @__orig
         .replace /^function([^\(\r]+)/, "function " + @name
 
   else
-
-    renameFunction = (orig, name) ->
-      fn = (Function "orig", "return function " + name + "() { return orig.apply(this, arguments) }")(orig)
-      fn.toString = ->
-        Function::toString
-          .call orig
-          .replace /^function([^\(\r]+)/, "function " + name
+    renameFunction = (fn, name) ->
+      fn.getName = -> name
       return fn
+
+  NamedFunction.createImpl = createImpl
 
   return NamedFunction
 
-isConfigurable = Object.getOwnPropertyDescriptor(Function, "name").configurable
-module.exports = NamedFunction = createImpl isConfigurable, isDev
-NamedFunction.createImpl = createImpl
+module.exports = NamedFunction = createImpl isDev
