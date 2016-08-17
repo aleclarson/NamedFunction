@@ -49,4 +49,4 @@ module.exports = NamedFunction = createImpl(isConfigurable, isDev);
 
 NamedFunction.createImpl = createImpl;
 
-//# sourceMappingURL=../../map/src/NamedFunction.map
+//# sourceMappingURL=map/NamedFunction.map

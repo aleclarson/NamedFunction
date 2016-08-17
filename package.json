@@ -2,7 +2,7 @@
   "name": "NamedFunction",
   "description": "Rename any function.",
   "version": "2.0.0",
-  "main": "js/src/NamedFunction",
+  "main": "js/NamedFunction",
   "dependencies": {
     "isDev": "aleclarson/isDev#1.0.0"
   },
