@@ -15,7 +15,7 @@ createImpl = (isDev) ->
 
     renameFunction = (orig, name) ->
       fn = Function("orig", "return function " + name + "() { return orig.apply(this, arguments) }")(orig)
-      fn.__orig = orig
+      Object.defineProperty fn, "__orig", {value: orig}
       fn.toString = NamedFunction.toString
       return fn
 
