@@ -1,5 +1,5 @@
 
-require "isDev"
+isDev = require "isDev"
 
 # Use 'getName' as the safe way of getting
 # a function name in any environment.
