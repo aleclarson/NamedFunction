@@ -1,19 +1,17 @@
 {
   "name": "NamedFunction",
   "description": "Rename any function.",
-  "version": "2.0.0",
-  "main": "js/src/NamedFunction",
+  "version": "2.0.1",
+  "main": "js/NamedFunction",
+  "plugins": [
+    "lotus-coffee",
+    "lotus-runner"
+  ],
+  "scripts": {
+    "build": "coffee-build -v 1.11.x -b -o js src",
+    "postinstall": "npm run build"
+  },
   "dependencies": {
-    "isDev": "aleclarson/isDev#1.0.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/aleclarson/NamedFunction.git"
-  },
-  "lotus": {
-    "plugins": [
-      "lotus-coffee",
-      "lotus-runner"
-    ]
+    "isDev": "aleclarson/isDev#2.0.0"
   }
 }
