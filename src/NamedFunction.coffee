@@ -5,7 +5,6 @@ isDev = require "isDev"
 isDev and Object.defineProperty Function::, "getName", value: -> @name
 
 createImpl = (isDev) ->
-
   NamedFunction = `function NamedFunction(name, fn) { return renameFunction(fn, name) }`
 
   if isDev
@@ -27,7 +26,6 @@ createImpl = (isDev) ->
       return fn
 
   NamedFunction.createImpl = createImpl
-
   return NamedFunction
 
 module.exports = NamedFunction = createImpl isDev
