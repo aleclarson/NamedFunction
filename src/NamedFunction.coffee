@@ -1,14 +1,10 @@
 
 isDev = require "isDev"
 
-# Use 'getName' as the safe way of getting
-# a function name in any environment.
-Object.defineProperty Function.prototype, "getName",
-  writable: yes
-  value: -> @name
+# The `getName` method works in and out of __DEV__ mode.
+Object.defineProperty Function::, "getName", value: -> @name
 
 createImpl = (isDev) ->
-
   NamedFunction = `function NamedFunction(name, fn) { return renameFunction(fn, name) }`
 
   if isDev
@@ -30,7 +26,6 @@ createImpl = (isDev) ->
       return fn
 
   NamedFunction.createImpl = createImpl
-
   return NamedFunction
 
 module.exports = NamedFunction = createImpl isDev
