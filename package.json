@@ -10,6 +10,6 @@
     "postinstall": "npm run build"
   },
   "dependencies": {
-    "isDev": "aleclarson/isDev#2.0.0"
+    "isDev": "aleclarson/isDev#3.0.0"
   }
 }
