@@ -2,7 +2,7 @@
 isDev = require "isDev"
 
 # The `getName` method works in and out of __DEV__ mode.
-isDev and Object.defineProperty Function::, "getName", value: -> @name
+Object.defineProperty Function::, "getName", value: -> @name
 
 createImpl = (isDev) ->
   NamedFunction = `function NamedFunction(name, fn) { return renameFunction(fn, name) }`
