@@ -1,11 +1,8 @@
 
 isDev = require "isDev"
 
-# Use 'getName' as the safe way of getting
-# a function name in any environment.
-Object.defineProperty Function.prototype, "getName",
-  writable: yes
-  value: -> @name
+# The `getName` method works in and out of __DEV__ mode.
+isDev and Object.defineProperty Function::, "getName", value: -> @name
 
 createImpl = (isDev) ->
 
