@@ -8,10 +8,13 @@
     "lotus-runner"
   ],
   "scripts": {
-    "build": "coffee-build -v 1.11.x -b -o js src",
+    "build": "coffee-build src -o js",
     "postinstall": "npm run build"
   },
   "dependencies": {
     "isDev": "aleclarson/isDev#2.0.0"
+  },
+  "devDependencies": {
+    "coffeescript": "^1.11.1"
   }
 }
