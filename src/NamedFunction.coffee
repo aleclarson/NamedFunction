@@ -4,6 +4,7 @@ isDev = require "isDev"
 # Use 'getName' as the safe way of getting
 # a function name in any environment.
 Object.defineProperty Function.prototype, "getName",
+  configurable: yes
   writable: yes
   value: -> @name
 
