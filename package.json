@@ -1,0 +1,20 @@
+{
+  "name": "NamedFunction",
+  "description": "Rename any function.",
+  "version": "2.0.1",
+  "main": "js/NamedFunction",
+  "plugins": [
+    "lotus-coffee",
+    "lotus-runner"
+  ],
+  "scripts": {
+    "build": "coffee-build src -o js",
+    "postinstall": "npm run build"
+  },
+  "dependencies": {
+    "isDev": "aleclarson/isDev#2.0.0"
+  },
+  "devDependencies": {
+    "coffeescript": "^1.11.1"
+  }
+}
